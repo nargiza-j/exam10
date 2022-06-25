@@ -1,0 +1,159 @@
+[
+{
+    "model": "webapp.ad",
+    "pk": 1,
+    "fields": {
+        "author": 1,
+        "title": "Мебель",
+        "text": "шкаф",
+        "category": 1,
+        "status": "Published",
+        "photo": "uploads/orig.webp",
+        "price": 10,
+        "created_at": "2022-06-25T04:52:12.953Z",
+        "updated_at": "2022-06-25T07:09:26.917Z",
+        "published_at": "2022-06-25T04:52:12.953Z",
+        "is_deleted": false
+    }
+},
+{
+    "model": "webapp.ad",
+    "pk": 2,
+    "fields": {
+        "author": 2,
+        "title": "Apple Watch",
+        "text": "jrnfjrf",
+        "category": 2,
+        "status": "Published",
+        "photo": "",
+        "price": 1,
+        "created_at": "2022-06-25T06:04:02.953Z",
+        "updated_at": "2022-06-25T06:04:02.953Z",
+        "published_at": null,
+        "is_deleted": false
+    }
+},
+{
+    "model": "webapp.ad",
+    "pk": 6,
+    "fields": {
+        "author": 2,
+        "title": "jbfjbgf",
+        "text": "fjnvfjvnf",
+        "category": 3,
+        "status": "Published",
+        "photo": "",
+        "price": 5,
+        "created_at": "2022-06-25T06:43:20.462Z",
+        "updated_at": "2022-06-25T07:09:15.629Z",
+        "published_at": null,
+        "is_deleted": false
+    }
+},
+{
+    "model": "webapp.ad",
+    "pk": 7,
+    "fields": {
+        "author": 3,
+        "title": "vhuvjhv",
+        "text": "bjbjbjk",
+        "category": 2,
+        "status": "Published",
+        "photo": "uploads/orig_4SeSba6.webp",
+        "price": 5,
+        "created_at": "2022-06-25T07:14:06.282Z",
+        "updated_at": "2022-06-25T07:14:15.625Z",
+        "published_at": null,
+        "is_deleted": false
+    }
+},
+{
+    "model": "webapp.ad",
+    "pk": 8,
+    "fields": {
+        "author": 2,
+        "title": "bggbggb",
+        "text": "gbgggb",
+        "category": 2,
+        "status": "Published",
+        "photo": "uploads/orig_DDgzwGl.webp",
+        "price": 10,
+        "created_at": "2022-06-25T07:21:39.649Z",
+        "updated_at": "2022-06-25T12:16:50.346Z",
+        "published_at": "2022-06-25T12:16:50.346Z",
+        "is_deleted": false
+    }
+},
+{
+    "model": "webapp.ad",
+    "pk": 9,
+    "fields": {
+        "author": 2,
+        "title": "new title",
+        "text": "fjgnfjg",
+        "category": 1,
+        "status": "Rejected",
+        "photo": "",
+        "price": 10,
+        "created_at": "2022-06-25T09:04:24.680Z",
+        "updated_at": "2022-06-25T09:13:56.514Z",
+        "published_at": null,
+        "is_deleted": false
+    }
+},
+{
+    "model": "webapp.ad",
+    "pk": 10,
+    "fields": {
+        "author": 2,
+        "title": "Neeeeewww",
+        "text": "fnvjfnvjf v",
+        "category": 2,
+        "status": "Rejected",
+        "photo": "",
+        "price": 24,
+        "created_at": "2022-06-25T12:17:35.382Z",
+        "updated_at": "2022-06-25T12:17:44.691Z",
+        "published_at": null,
+        "is_deleted": false
+    }
+},
+{
+    "model": "webapp.ad",
+    "pk": 11,
+    "fields": {
+        "author": 2,
+        "title": "noeoeoe",
+        "text": "vgjfnjkf v",
+        "category": 3,
+        "status": "Published",
+        "photo": "",
+        "price": null,
+        "created_at": "2022-06-25T12:19:09.355Z",
+        "updated_at": "2022-06-25T12:19:20.692Z",
+        "published_at": "2022-06-25T12:19:20.692Z",
+        "is_deleted": false
+    }
+},
+{
+    "model": "webapp.category",
+    "pk": 1,
+    "fields": {
+        "name": "мебель"
+    }
+},
+{
+    "model": "webapp.category",
+    "pk": 2,
+    "fields": {
+        "name": "техника"
+    }
+},
+{
+    "model": "webapp.category",
+    "pk": 3,
+    "fields": {
+        "name": "прочее"
+    }
+}
+]

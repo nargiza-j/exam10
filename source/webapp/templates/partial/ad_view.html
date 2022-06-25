@@ -17,7 +17,7 @@
               <h5 class="card-title">{{ ad.title }}</h5>
             <p class="card-text">{{ ad.text }}</p>
             <p class="h6">Цена: {{ ad.price|default:"" }}</p>
-            <p class="card-text"><small class="text-muted">{{ ad.publicated_at }}</small></p>
+            <p class="card-text"><small class="text-muted">{{ ad.published_at }}</small></p>
               <div class="btn-group">
                   {% if ad.author == request.user %}
                       {% if ad.status != 'Rejected'%}

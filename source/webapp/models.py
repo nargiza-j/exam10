@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -22,6 +24,15 @@ class Ad(models.Model):
 
     def soft_delete(self):
         self.is_deleted = True
+        self.save()
+
+    def set_status_reject(self):
+        self.status = "Rejected"
+        self.save()
+
+    def set_status_approve(self):
+        self.status = "Published"
+        self.published_at = datetime.datetime.now()
         self.save()
 
     class Meta:

@@ -23,8 +23,14 @@
             <p class="card-text"><small class="text-muted">{{ ad.publicated_at }}</small></p>
           </div>
           <div>
-            <button onclick="setApprove()" type="button" class="btn btn-success" id="btn-approve">Одобрить</button>
-            <button onclick="setReject()" type="button" class="btn btn-danger" id="btn-reject">Отклонить</button>
+            <div id="block_moderated_{{ ad.pk }}" style="display: flex; flex-direction: row">
+                    <button data-pk="{{ ad.pk }}" onclick="acceptStatus(event)" style="margin: 5px"
+                            class="btn btn-success">Принять
+                    </button>
+                    <button data-pk="{{ ad.pk }}" onclick="rejectStatus(event)" style="margin: 5px"
+                            class="btn btn-danger">Отклонить
+                    </button>
+            </div>
           </div>
         </div>
       </div>
