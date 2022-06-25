@@ -8,15 +8,17 @@ from django.views.generic import ListView, CreateView, DetailView, DeleteView, U
 
 from webapp.forms import AdForm
 from webapp.models import Ad
+from webapp.views.search_view import SearchView
 
 
-class AdListView(ListView):
+class AdListView(SearchView):
     model = Ad
     template_name = 'index.html'
     context_object_name = 'ads'
     ordering = ('-created_at',)
     paginate_by = 3
     paginate_orphans = 0
+    search_fields = ["title__icontains", "text__icontains"]
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -79,13 +81,14 @@ class AdUpdateView(PermissionRequiredMixin, UpdateView):
         return redirect('webapp:index')
 
 
-class AdReviewListView(PermissionRequiredMixin, ListView):
+class AdReviewListView(PermissionRequiredMixin, SearchView):
     model = Ad
     template_name = 'review.html'
     context_object_name = 'ads'
     ordering = ('-created_at',)
     paginate_by = 3
     paginate_orphans = 0
+    search_fields = ["title__icontains", "text__icontains"]
 
     def get_queryset(self):
         queryset = super().get_queryset()

@@ -6,6 +6,7 @@
         <h2>Нет объявлений</h2>
     {% else %}
         <h3>Список объявлений</h3>
+        {% include 'partial/simple_search.html' %}
         {% include "partial/ad_list.html" with ads=ads more=True %}
     {% endif %}
 
