@@ -10,25 +10,30 @@
                         <img src="{% static 'img/No_picture.jpg' %}" class="card-img-top" alt="photo">
                     {% endif %}
                     <div class="card-body">
-                        <h5 class="card-title"><a
-                                href="{% url "webapp:ad_view" ad.pk %}">{{ ad.title }}</a></h5>
+                        <h5 class="card-title">{{ ad.title }}</h5>
                         <p class="card-text">Автор:<a style="text-decoration: none" href="{% url 'accounts:user_profile' ad.author.pk %}">
                     {{ ad.author.first_name | capfirst }}</a></p>
                         <p class="card-text">Телефон: {{ ad.author.phone }}</p>
-                        <p class="card-text">Категория: {{ ad.get_category_display }}</p>
+                        <p class="card-text">Категория: {{ ad.category }}</p>
                         <p class="card-text">Цена: {{ ad.price|default:"" }}</p>
                         <p class="card-text">Описание: {{ ad.text }}</p>
                         <p class="card-text">status: {{ ad.status }}</p>
-                        <div class="btn-group">
-                            {% if ad.author == request.user %}
-                            <a class="btn btn-primary" href="{% url 'webapp:ad_update' ad.pk %}">Изменить</a>
-                            {%  endif %}
-                            {% if ad.author == request.user %}
-                            <a class="btn btn-danger" href="{% url 'webapp:ad_delete' ad.pk %}">Удалить</a>
-                            {%  endif %}
-                        </div>
+                        {% if more %}
+                            <div class="btn-group">
+                                <a class="btn btn-success" href="{% url 'webapp:ad_view' ad.pk %}">Просмотр</a>
+                                {% if ad.author == request.user %}
+                                    {% if ad.status != 'Rejected'%}
+                                        <a class="btn btn-primary" href="{% url 'webapp:ad_update' ad.pk %}">Изменить</a>
+                                    {%  endif %}
+                                    <a class="btn btn-danger" href="{% url 'webapp:ad_delete' ad.pk %}">Удалить</a>
+                                {%  endif %}
+                            </div>
+                            {% endif %}
+                        {% if approve %}
+                            <a href="{% url 'webapp:ad_approve_detail' ad.pk %}" type="button" class="btn btn-outline-primary ml-0 pl-0 mt-auto pt-auto">Просмотр</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         {% endfor %}
-    </div>
+</div>

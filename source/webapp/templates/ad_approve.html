@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}объявление на проверку{% endblock %}
+{% block content %}
+    <div class="card mb-3" >
+      <div class="row g-0">
+        <div class="col-md-4">
+          {% if ad.photo %}
+                <img src="{{ ad.photo.url  }}" class="img-fluid rounded-start" alt="photo">
+            {% else %}
+                <img src="{% static 'img/No_picture.jpg' %}" class="img-fluid rounded-start" alt="photo">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ ad.title }}</h5>
+            <p class="card-text">Категория: {{ ad.category }}</p>
+            <p class="card-text">Описание:{{ ad.text }}</p>
+           {% if ad.price %}
+            <p class="h6">Цена: {{ ad.price }}</p>
+            {% endif %}
+            <p class="card-text"><small class="text-muted">{{ ad.publicated_at }}</small></p>
+          </div>
+          <div>
+            <button type="button" class="btn btn-success" id="approve_btn">Одобрить</button>
+            <button type="button" class="btn btn-danger" id="reject_btn">Отклонить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}

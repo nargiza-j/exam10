@@ -77,3 +77,34 @@ class AdUpdateView(PermissionRequiredMixin, UpdateView):
         ad.status = 'For moderation'
         ad.save()
         return redirect('webapp:index')
+
+
+class AdReviewListView(PermissionRequiredMixin, ListView):
+    model = Ad
+    template_name = 'review.html'
+    context_object_name = 'ads'
+    ordering = ('-created_at',)
+    paginate_by = 3
+    paginate_orphans = 0
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(status='For moderation').filter(is_deleted=False)
+        return queryset
+
+    def has_permission(self):
+        return self.request.user.is_staff
+
+
+class AdApproveView(PermissionRequiredMixin, DetailView):
+    model = Ad
+    template_name = 'ad_approve.html'
+    context_object_name = 'ad'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(Q(status='For moderation') & Q(is_deleted=False))
+        return queryset
+
+    def has_permission(self):
+        return self.request.user.is_staff

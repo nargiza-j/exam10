@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Список новых объявлений{% endblock title %}
+{% block content %}
+
+    {% if not ads %}
+        <h2>Нет объявлений</h2>
+    {% else %}
+        {% include 'partial/ad_list.html' with ads=ads  approve=True %}
+        <div class="container d-flex align-content-center flex-wrap my-4">
+        </div>
+    {% endif %}
+
+{% endblock content %}
