@@ -1,10 +1,9 @@
-from django.contrib.auth import login
-from django.shortcuts import redirect
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse
 
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, UpdateView
 
-from accounts.forms import MyUserCreationForm
+from accounts.forms import MyUserCreationForm, ProfileUpdateForm
 from accounts.models import Users
 
 
@@ -27,11 +26,22 @@ class UserProfileView(DetailView):
     template_name = 'registration/profile.html'
     context_object_name = "user_object"
 
-    # def get_context_data(self, **kwargs):
-    #     if self.get_object() == self.request.user:
-    #         kwargs['photos'] = self.get_object().photos.all()
-    #         kwargs['albums'] = self.get_object().album.all()
-    #     else:
-    #         kwargs['photos'] = self.get_object().photos.filter(is_private=False)
-    #         kwargs['albums'] = self.get_object().album.filter(is_private=False)
-    #     return super().get_context_data(**kwargs)
+    def get_context_data(self, **kwargs):
+        if self.get_object() == self.request.user:
+            kwargs['ads'] = self.get_object().ads.exclude(is_deleted=True)
+        else:
+            kwargs['ads'] = self.get_object().ads.filter(status='Published')
+        return super().get_context_data(**kwargs)
+
+
+class UserUpdateView(PermissionRequiredMixin, UpdateView):
+    model = Users
+    template_name = 'profile_update.html'
+    context_object_name = 'user_obj'
+    form_class = ProfileUpdateForm
+
+    def has_permission(self):
+        return self.get_object() == self.request.user
+
+    def get_success_url(self):
+        return reverse('accounts:user_profile', kwargs={'pk': self.request.user.id})

@@ -8,22 +8,12 @@
     <p>Логин: {{ user_object.username }}</p>
     <p>Имя: {{ user_object.first_name }}</p>
     <p>Телефон: {{ user_object.phone }}</p>
-{#    <h3>Photos</h3>#}
-{#            {% for photo in photos %}#}
-{#                <div class="col-12 col-md-4 col-lg-4">#}
-{#                <div class="card mb-3">#}
-{#                  <img src="{{ photo.photo.url }}" class="card-img-top" alt="photo">#}
-{#                  <div class="card-body">#}
-{#                    <h5 class="card-title">Author: {{ photo.author }}</h5>#}
-{#                    <h6 class="card-title">Date: {{ photo.created_at }}</h6>#}
-{#                    <p class="card-text"> {{ photo.content }}</p>#}
-{#                    <a class="btn btn-primary" href="{% url 'webapp:photo_view' photo.pk %}">More..</a>#}
-{#                  </div>#}
-{#                </div>#}
-{#                </div>#}
-{#            {% endfor %}#}
-{#    <h3>Albums</h3>#}
-{#    {% for album in albums %}#}
-{#        <a href="{% url "webapp:album_view" album.pk %}">{{ album.name }}</a>#}
-{#    {% endfor %}#}
+    {% if user_object == request.user %}
+        <a class="btn btn-primary" href="{% url 'accounts:user_update' user_object.pk %}">Изменить номер телефона</a>
+    {% endif %}
+    <hr>
+    {% if ads %}
+        <h4>Список объявлений</h4>
+        {% include 'partial/ad_list.html' with ads=ads more=True %}
+    {% endif %}
 {% endblock content %}

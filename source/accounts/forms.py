@@ -18,6 +18,9 @@ class MyUserCreationForm(UserCreationForm):
 
 
 class ProfileUpdateForm(forms.ModelForm):
+    phone = PhoneNumberField(
+        error_messages={"invalid": "Формат: +996 XXX XXX XXX"})
+
     class Meta:
         model = Users
         fields = ("phone",)
