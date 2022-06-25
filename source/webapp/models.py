@@ -13,12 +13,16 @@ class Ad(models.Model):
     text = models.TextField(max_length=500, null=False, blank=False, verbose_name='Описание')
     category = models.ForeignKey('webapp.Category', on_delete=models.CASCADE, related_name='ads', verbose_name='Категория')
     status = models.CharField(max_length=50, default='For moderation', choices=AD_STATUS, verbose_name='Статус')
-    photo = models.ImageField(upload_to="uploads/", null=False, blank=False, verbose_name='Фото')
+    photo = models.ImageField(upload_to="uploads/", null=True, blank=True, verbose_name='Фото')
     price = models.PositiveIntegerField(null=True, blank=True, verbose_name='Цена')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата изменения")
-    published_at = models.DateTimeField(auto_now=True, verbose_name="Дата публикации")
+    published_at = models.DateTimeField(null=True, blank=True, verbose_name="Дата публикации")
     is_deleted = models.BooleanField(null=True, blank=True, default=False, verbose_name='Удален')
+
+    def soft_delete(self):
+        self.is_deleted = True
+        self.save()
 
     class Meta:
         db_table = 'ads'

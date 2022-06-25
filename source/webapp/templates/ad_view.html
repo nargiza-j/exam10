@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="card mb-3" >
+      <div class="row g-0">
+        <div class="col-md-4">
+            {% if ad.photo %}
+                <img src="{{ ad.photo.url  }}" class="img-fluid rounded-start" alt="photo">
+            {% else %}
+                <img src="{% static 'img/No_picture.jpg' %}" class="img-fluid rounded-start" alt="photo">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h3 class="card-title">Автор: <a href="{% url 'accounts:user_profile' ad.author.pk %}">{{ ad.author.first_name | capfirst }}</a></h3>
+              <p class="h6">Телефон: {{ ad.author.phone }}</p>
+              <hr>
+              <h5 class="card-title">{{ ad.title }}</h5>
+            <p class="card-text">{{ ad.text }}</p>
+            <p class="h6">Цена: {{ ad.price|default:"" }}</p>
+            <p class="card-text"><small class="text-muted">{{ ad.publicated_at }}</small></p>
+              <div class="btn-group">
+                            {% if ad.author == request.user %}
+                            <a class="btn btn-primary" href="{% url 'webapp:ad_update' ad.pk %}">Изменить</a>
+                            {%  endif %}
+                            {% if ad.author == request.user %}
+                            <a class="btn btn-danger" href="{% url 'webapp:ad_delete' ad.pk %}">Удалить</a>
+                            {%  endif %}
+                        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}

@@ -1,3 +1,12 @@
 {% extends 'base.html' %}
 
+{% block title %}Главная{% endblock %}
+{% block content %}
+    {% if not ads %}
+        <h2>Нет объявлений</h2>
+    {% else %}
+        <h3>Список объявлений</h3>
+        {% include "partial/ad_list.html" %}
+    {% endif %}
 
+{% endblock content %}
